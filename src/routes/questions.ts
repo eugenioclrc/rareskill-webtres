@@ -46,5 +46,6 @@ contract C is B {
 
 **Fuente**: [https://secureum.substack.com/p/solidity-201](https://secureum.substack.com/p/solidity-201)
     `,
+    by: 'bengalaQ'
   },
 ]

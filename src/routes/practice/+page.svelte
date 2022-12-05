@@ -160,7 +160,10 @@ function gotoNextQuestion() {
             </div>
 
             <div class="text-lg">
-                {q0.answer}
+                <div>
+                    {q0.answer}
+                </div>
+                <small>Answered by {q0.by}</small>
             </div>
         {/if}
             <hr class="my-2"/>

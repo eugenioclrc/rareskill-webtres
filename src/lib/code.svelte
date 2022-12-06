@@ -16,7 +16,7 @@
   
 </script>
 
-<div class="mockup-code text-sm max-w-xl mx-auto mt-5 rounded" style="background-color: #191b1d;">
+<div class="mockup-code text-sm mx-0 max-w-xl mt-5 rounded" style="background-color: #191b1d;">
   <pre class="flex flex-col justify-left">
     <svg 
     class="relative -top-3 left-2"

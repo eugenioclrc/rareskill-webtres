@@ -5,7 +5,7 @@
 
 
   
-<section class="container mx-auto px-6 py-16 pt-28 text-center">
+<section class="container mx-auto px-6 py-16 pt-8 text-center">
 	<div class="mx-auto max-w-lg prose lg:prose-xl bg-white p-10 rounded-md">
 		<small>Ethereum rareskill quizz by WebtrES</small>
 		<h2 class="font-bold text-gray-800 dark:text-white" style="margin-top: 10px">Up for a challenge? Test your solidity skillz.</h2>

@@ -42,6 +42,7 @@
 		"highlightjs": "^9.16.2",
 		"highlightjs-solidity": "^2.0.5",
 		"seedrandom": "^3.0.5",
-		"svelte-icons": "^2.1.0"
+		"svelte-icons": "^2.1.0",
+		"svelte-markdown": "^0.2.3"
 	}
 }

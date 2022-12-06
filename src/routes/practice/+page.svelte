@@ -1,5 +1,6 @@
 <script lang="ts">
 import { confetti } from '@neoconfetti/svelte';
+import SvelteMarkdown from 'svelte-markdown'
 import { fade } from 'svelte/transition';
 import {onMount} from "svelte";
 import Code from "$lib/code.svelte";
@@ -61,6 +62,11 @@ function solve() {
     let answerOk = false;
     if (q0.type == 'radio') {
         answerOk = !!q0.options[answerRadio].check;
+    } else {
+        const expected = q0.options.map((e, i) => e.check ? i : -1).filter(e => e > -1);
+        const filteredArray = answerMulti.filter(value => expected.includes(value));
+        answerOk = expected.length == filteredArray.length;
+        
     }
     fail = false;
 
@@ -76,7 +82,18 @@ function solve() {
         setTimeout(() => {
             fail = true;
         }, 10);
-        wrongAnswer = [answerRadio, ...wrongAnswer];
+        
+        if (answerRadio != -1) {
+            wrongAnswer = [answerRadio, ...wrongAnswer];
+        } else {
+            const expected = q0.options.map((e, i) => e.check ? i : -1).filter(e => e > -1);
+            
+            wrongAnswer = [...answerMulti.filter(e => !expected.includes(e)), ...wrongAnswer];
+        }
+        
+        answerRadio = -1;
+        answerMulti = [];
+        
     }
 }
 
@@ -116,11 +133,11 @@ function gotoNextQuestion() {
 	/>
 {/if}
 
-<div class="w-full py-8">
+<div class="w-full pt-0 pb-16">
     <div class="flex items-center justify-center space-x-2">
         <h1 class="text-3xl font-bold text-blue-600 tracking-wider">Practice Mode</h1>
     </div>
-    <div class="bg-white w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
+    <div class="bg-white container max-w-4xl mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
         <small>Question {nQuestion + 1} of {shuffleQuestions.length}</small>
         <h2 class="text-2xl font-bold tracking-wide text-gray-800">
             {nQuestion + 1})
@@ -130,25 +147,19 @@ function gotoNextQuestion() {
         {/if}
         <fieldset class="block">
             <div class="mt-2 text-lg">
-                {#if q0.type == 'checkbox'}
                     {#each q0.options as o, i}
                         <div>
                         <label class="inline-flex items-center">
-                            <input class="form-checkbox" type="checkbox" disabled={won} bind:group={answerMulti} value={i} />
-                            <span class="ml-2" class:text-red-700={wrongAnswer.indexOf(i) > -1} class:text-green-700={correctAnswer.indexOf(i) > -1}>{o.text}</span>
+                            {#if q0.type == 'checkbox'}
+                                <input class="form-checkbox" type="checkbox" disabled={won} bind:group={answerMulti} value={i} />
+                            {:else}
+                                <input class="form-radio" type="radio" disabled={won} bind:group={answerRadio} value={i} />
+                            {/if}
+                            <span class="ml-2" class:text-red-700={wrongAnswer.includes(i)} class:text-green-700={correctAnswer.includes(i)}>{o.text}</span>
                         </label>
                         </div>
                     {/each}
-                {:else}
-                    {#each q0.options as o, i}
-                        <div>
-                        <label class="inline-flex items-center">
-                            <input class="form-radio" type="radio" name="answer-q0" value={i} disabled={won} bind:group={answerRadio}  />
-                            <span class="ml-2" class:text-red-700={wrongAnswer.indexOf(i) > -1} class:text-green-700={correctAnswer.indexOf(i) > -1}>{o.text}</span>
-                        </label>
-                        </div>
-                    {/each}
-                {/if}
+                
             </div>
         </fieldset>
 
@@ -160,9 +171,7 @@ function gotoNextQuestion() {
             </div>
 
             <div class="text-lg">
-                <div>
-                    {q0.answer}
-                </div>
+                <SvelteMarkdown source={q0.answer} />
                 <small>Answered by {q0.by}</small>
             </div>
         {/if}

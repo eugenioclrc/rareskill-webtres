@@ -57,7 +57,7 @@
 				wrongAnswer = [answerRadio, ...wrongAnswer];
 			} else {
 				const notExpected = q0.options.map((e, i) => (!e.check ? i : -1)).filter((e) => e > -1);
-        wrongAnswer = [...answerMulti.filter((e) => notExpected.includes(e)), ...wrongAnswer];
+				wrongAnswer = [...answerMulti.filter((e) => notExpected.includes(e)), ...wrongAnswer];
 			}
 
 			answerRadio = -1;

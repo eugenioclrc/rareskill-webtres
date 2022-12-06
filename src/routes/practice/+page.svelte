@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { confetti } from '@neoconfetti/svelte';
+	import { setWithExpiry, getWithExpiry } from '$lib/storage';
+	import confetti from 'canvas-confetti';
 	import SvelteMarkdown from 'svelte-markdown';
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
@@ -23,7 +24,6 @@
 	function shuffle(array: Array<any>) {
 		let currentIndex = array.length,
 			randomIndex;
-
 		// While there remain elements to shuffle.
 		while (currentIndex != 0) {
 			// Pick a remaining element.
@@ -40,7 +40,12 @@
 	let shuffleQuestions = [...questions];
 
 	onMount(() => {
-		myrng = seedrandom('');
+		let seed = getWithExpiry('seed');
+		if (!seed) {
+			seed = (Math.random() * 1e18).toFixed(0);
+			setWithExpiry('seed', seed, 1000 * 60 * 60 * 24);
+		}
+		myrng = seedrandom(seed);
 		shuffleQuestions = shuffle(questions);
 		shuffleQuestions.forEach((e) => {
 			e.options = [...shuffle(e.options)];
@@ -63,6 +68,7 @@
 
 		if (answerOk) {
 			won = true;
+			confetti();
 			correctAnswer = q0.options.map((e, i) => (e.check ? i : -1)).filter((e) => e > -1);
 			showAnswer = true;
 			setTimeout(() => {
@@ -109,18 +115,6 @@
 		correctAnswer = [];
 	}
 </script>
-
-{#if won}
-	<div
-		style="position: absolute; left: 50%; top: 30%"
-		use:confetti={{
-			force: 0.7,
-			stageWidth: window.innerWidth,
-			stageHeight: window.innerHeight,
-			colors: ['#ff3e00', '#40b3ff', '#676778']
-		}}
-	/>
-{/if}
 
 {#if myrng}
 	<div class="w-full pt-0 pb-16">

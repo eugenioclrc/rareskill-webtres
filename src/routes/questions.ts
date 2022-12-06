@@ -307,5 +307,122 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 
   **Source**: [https://www.evm.codes/](https://www.evm.codes/)`,
 		by: 'matta'
+	},
+	{
+		question:
+			'You have only one ether (plus a little to pay for gas). Can you win this game and get two ether?',
+		type: 'checkbox',
+		code: `
+	function rollDice() external payable{
+		require(msg.value == 1 ether, "You must bet one ether");
+
+		if (uint256(blockhash(block.number - 1)) % 6 == 3) {
+			payable(msg.sender).transfer(2 ether);
+		}
+	}`,
+
+		options: [
+			{
+				text: "If the contract doesn't have 1 ether in it, you will lose the 1 ether you payed to play, even if you get the correct number"
+			},
+			{
+				text: "If the contract doesn't have 2 ether in it, you will lose the 1 ether you payed to play, even if you get the correct number"
+			},
+			{ text: "You have a 1 in 6 chance of winning, so you probably shouldn't play" },
+			{ text: 'You can reliably win this game', check: true }
+		],
+		answer: `
+- [ ]  If the contract doesn't have 1 ether in it, you will lose the 1 ether you payed to play, even if you get the correct number
+**Falso, debería fallar el transfer y revertir.**
+- [ ]  If the contract doesn't have 2 ether in it, you will lose the 1 ether you payed to play, even if you get the correct number
+    
+    **Falso, debería fallar el transfer y revertir.**
+    
+- [ ]  You have a 1 in 6 chance of winning, so you probably shouldn't play
+    
+    ***Elegiría esta si no fuera porque no es aleatorio el factor que lo define, dado que está basada en información pública.***
+    
+- [x]  You can reliably win this game
+    
+    **Yo creo que sí podría ganarlo, explico debajo.**
+
+1. Podría esperar a que llegue el momento de enviar la transacción, en donde no haya mucho tráfico en la red y sea probable que quede incluído en el bloque que espero.
+2. En algún momento en el futuro puede haber varios bloques consecutivos, cuyo resultado de aplicarle el módulo 6 al blockhash de ellos de 3. Es sólo cuestión de enviar la transacción en ese momento. Ahora, la posibilidades de que haya por ej 3 bloques consecutivos que den ese valor es baja **0.463%,** por ahí el “realiably” hace que la descarte como respuesta.
+3. Y sino, coordinar con un validador/miner por afuera, y que meta la tx cuando corresponda. Usaría algo como flashbots, y al final del bundle enviaría un % de la ganancia al bot.
+`,
+		by: 'matta'
+	},
+
+	{
+		question: 'What does require(msg.sender == tx.origin) do?',
+		type: 'radio',
+		options: [
+			{ text: 'It will only accept transactions from smart contracts' },
+			{ text: 'It will block all transactions since tx.origin is never equal to msg.sender' },
+			{
+				text: 'It will accept transactions from smart contracts only if it is called from the constructor'
+			},
+			{ text: 'It will only accept transactions from regular wallets', check: true },
+			{ text: "It doesn't do anything, tx.origin is the deprecated version of msg.sender" }
+		],
+		answer:
+			'tx.origin is the address that initialized the transaction, which has to be an EOA. Checking that tx.origin == msg.sender will give us the security that msg.sender == EOA',
+		by: 'Chiin'
+	},
+
+	{
+		question: 'What is true about ERC721?',
+		type: 'radio',
+		options: [
+			{ text: 'neither _mint() or _safeMint are potentially re-entrant', check: true },
+			{ text: '_safeMint() is potentially re-entrant but _mint() is not' },
+			{ text: '_mint() is potentially re-entrant but _safeMint() is not' },
+			{ text: 'both _mint() and _safeMint() are potentially re-entrant' }
+		],
+		answer: `
+La unica diferencia entre _mint() y _safeMint() es que _safeMint() valida que el receiver (si es un contrato) tenga implementado el metodo onERC721Received() por lo que esta preparado para recibir nfts y estos no quedaran trabados en el contrato.`,
+		by: 'nicobevi'
+	},
+
+	{
+		question: 'What is the difference between a view and pure function in Solidity?',
+		type: 'checkbox',
+		options: [
+			{ text: 'Pure functions cannot make calls to arbitrary smart contracts', check: true },
+			{
+				text: 'Pure functions cannot access blockchain state, but view functions can',
+				check: true
+			},
+			{ text: 'Pure functions will revert if they access blockchain state' },
+			{ text: 'Pure functions cannot return any data, but view functions can' },
+			{ text: 'A pure function cannot have any side effects, but a view function can' }
+		],
+		answer: `
+**Source**: [https://docs.soliditylang.org/en/v0.8.17/contracts.html?highlight=pure#state-mutability](https://docs.soliditylang.org/en/v0.8.17/contracts.html?highlight=pure#state-mutability)
+`,
+		by: 'Magnetto'
+	},
+
+	{
+		question: 'What is true about transferFrom and safeTransferFrom in ERC721?',
+		type: 'radio',
+		questions: [
+			{ text: 'safeTransferFrom checks if the recipient is a smart contract', check: true },
+			{ text: 'transferFrom may be re-entrant, but safeTransferFrom is not re-entrant' },
+			{ text: 'transferFrom checks if the recipient is a smart contract' },
+			{
+				text: 'safeTransferFrom can be called by another smart contract, but transferFrom cannot be called by another smart contract'
+			},
+			{
+				text: 'safeTransferFrom allows you to transfer multiple NFTs, but transferFrom only allows single transfers'
+			}
+		],
+		answer: `
+**Sources:** 
+
+- [https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721-transferFrom-address-address-uint256-](https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#IERC721-transferFrom-address-address-uint256-)
+- [https://eips.ethereum.org/EIPS/eip-721](https://eips.ethereum.org/EIPS/eip-721)
+`,
+		by: 'juancito'
 	}
 ];

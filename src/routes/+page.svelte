@@ -12,21 +12,78 @@
 			Original test created by <a
 				href="https://www.rareskills.io/test-yourself"
 				class="hover:underline text-blue-800"
-				target="_blank" rel="noreferrer">rareskills</a
+				target="_blank"
+				rel="noreferrer">rareskills</a
 			>.<br />
 			The answer for the test has been answered by
-			<a href="https://twitter.com/mattaereal" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">matta</a>,
-			<a href="https://twitter.com/eugenioclrc" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">0x4non</a>,
-			<a href="https://twitter.com/chiin_rock" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">Chiin</a>,
-			<a href="https://twitter.com/0xJuancito" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">juancito</a>,
-			<a href="https://twitter.com/magnetto_eth" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">Magnetto</a>,
-			<a href="https://twitter.com/0xivaniuss" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">ivaniuss</a>,
-			<a href="https://twitter.com/AugustitoQ" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">bengalaQ</a>, 
-			<a href="https://twitter.com/adrianromero" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">adriro</a>, 
-			<a href="https://twitter.com/nicobevi_eth" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">nicobevi</a> & 
-			<a href="https://twitter.com/tomasfrancizco" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">tomasfrancisco</a> 
-			for the 
-			<a href="https://twitter.com/webtresclub" class="hover:underline text-blue-700" target="_blank" rel="noreferrer">webtresclub crew</a>.
+			<a
+				href="https://twitter.com/mattaereal"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">matta</a
+			>,
+			<a
+				href="https://twitter.com/eugenioclrc"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">0x4non</a
+			>,
+			<a
+				href="https://twitter.com/chiin_rock"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">Chiin</a
+			>,
+			<a
+				href="https://twitter.com/0xJuancito"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">juancito</a
+			>,
+			<a
+				href="https://twitter.com/magnetto_eth"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">Magnetto</a
+			>,
+			<a
+				href="https://twitter.com/0xivaniuss"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">ivaniuss</a
+			>,
+			<a
+				href="https://twitter.com/AugustitoQ"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">bengalaQ</a
+			>,
+			<a
+				href="https://twitter.com/adrianromero"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">adriro</a
+			>,
+			<a
+				href="https://twitter.com/nicobevi_eth"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">nicobevi</a
+			>
+			&
+			<a
+				href="https://twitter.com/tomasfrancizco"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">tomasfrancisco</a
+			>
+			for the
+			<a
+				href="https://twitter.com/webtresclub"
+				class="hover:underline text-blue-700"
+				target="_blank"
+				rel="noreferrer">webtresclub crew</a
+			>.
 		</p>
 		<div class="mx-auto w-full max-w-sm">
 			<a

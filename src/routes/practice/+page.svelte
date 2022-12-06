@@ -123,94 +123,95 @@
 {/if}
 
 {#if myrng}
-<div class="w-full pt-0 pb-16">
-	<div class="flex items-center justify-center space-x-2">
-		<h1 class="text-3xl font-bold text-blue-600 tracking-wider">Practice Mode</h1>
-	</div>
-	<div class="bg-white container max-w-4xl mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
-		<small>Question {nQuestion + 1} of {shuffleQuestions.length}</small>
-		<h2 class="text-2xl font-bold tracking-wide text-gray-800">
-			{nQuestion + 1})
-			{q0.question}
-		</h2>
-		{#if q0.code}
-			<Code sourcecode={q0.code} />
-		{/if}
-		<fieldset class="block">
-			<div class="mt-2 text-lg">
-				{#each q0.options as o, i}
-					<div class="border-t border-gray-200">
-						<label class="inline-flex items-center">
-							{#if q0.type == 'checkbox'}
-								<input
-									class="form-checkbox"
-									type="checkbox"
-									disabled={won}
-									bind:group={answerMulti}
-									value={i}
-								/>
-							{:else}
-								<input
-									class="form-radio"
-									type="radio"
-									disabled={won}
-									bind:group={answerRadio}
-									value={i}
-								/>
-							{/if}
-							<span
-								class="ml-2"
-								class:text-red-700={wrongAnswer.includes(i)}
-								class:text-green-700={correctAnswer.includes(i)}>{o.text}</span
-							>
-						</label>
-					</div>
-				{/each}
-			</div>
-		</fieldset>
+	<div class="w-full pt-0 pb-16">
+		<div class="flex items-center justify-center space-x-2">
+			<h1 class="text-3xl font-bold text-blue-600 tracking-wider">Practice Mode</h1>
+		</div>
+		<div class="bg-white container max-w-4xl mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
+			<small>Question {nQuestion + 1} of {shuffleQuestions.length}</small>
+			<h2 class="text-2xl font-bold tracking-wide text-gray-800">
+				{nQuestion + 1})
+				{q0.question}
+			</h2>
+			{#if q0.code}
+				<Code sourcecode={q0.code} />
+			{/if}
+			<fieldset class="block">
+				<div class="mt-2 text-lg">
+					{#each q0.options as o, i}
+						<div class="border-t border-gray-200">
+							<label class="inline-flex items-center">
+								{#if q0.type == 'checkbox'}
+									<input
+										class="form-checkbox"
+										type="checkbox"
+										disabled={won}
+										bind:group={answerMulti}
+										value={i}
+									/>
+								{:else}
+									<input
+										class="form-radio"
+										type="radio"
+										disabled={won}
+										bind:group={answerRadio}
+										value={i}
+									/>
+								{/if}
+								<span
+									class="ml-2"
+									class:text-red-700={wrongAnswer.includes(i)}
+									class:text-green-700={correctAnswer.includes(i)}>{o.text}</span
+								>
+							</label>
+						</div>
+					{/each}
+				</div>
+			</fieldset>
 
-		{#if showAnswer}
-			<div class="flex items-center justify-between" in:fade>
-				<div class="w-full h-[1px] bg-gray-300" />
-				<span class="text-sm uppercase mx-6 text-gray-400">justification</span>
-				<div class="w-full h-[1px] bg-gray-300" />
-			</div>
+			{#if showAnswer}
+				<div class="flex items-center justify-between" in:fade>
+					<div class="w-full h-[1px] bg-gray-300" />
+					<span class="text-sm uppercase mx-6 text-gray-400">justification</span>
+					<div class="w-full h-[1px] bg-gray-300" />
+				</div>
 
-			<div class="text-lg">
-				<SvelteMarkdown source={q0.answer} />
-				<small>Answered by {q0.by}</small>
-			</div>
-		{/if}
-		<hr class="my-2" />
+				<div class="text-lg">
+					<SvelteMarkdown source={q0.answer} />
+					<small>Answered by {q0.by}</small>
+				</div>
+			{/if}
+			<hr class="my-2" />
 
-		<button
-			type="button"
-			class:primary-btn={!(answerRadio == -1 && answerMulti.length == 0)}
-			class:secondary-btn={(answerRadio == -1 && answerMulti.length == 0) || won}
-			class:shake={fail}
-			disabled={(answerRadio == -1 && answerMulti.length == 0) || won}
-			on:click={solve}
-			class="base-btn">Submit</button
-		>
-
-		{#if showAnswerButton}
 			<button
 				type="button"
-				on:click={renderAnswer}
-				disabled={showAnswer}
-				class:danger-btn={!showAnswer}
-				class="base-btn">Show answer</button
+				class:primary-btn={!(answerRadio == -1 && answerMulti.length == 0)}
+				class:secondary-btn={(answerRadio == -1 && answerMulti.length == 0) || won}
+				class:shake={fail}
+				disabled={(answerRadio == -1 && answerMulti.length == 0) || won}
+				on:click={solve}
+				class="base-btn">Submit</button
 			>
-		{/if}
 
-		{#if nextQuestion}
-			<button type="button" on:click={gotoNextQuestion} class="base-btn success-btn"
-				>Next Question</button
-			>
-		{/if}
+			{#if showAnswerButton}
+				<button
+					type="button"
+					on:click={renderAnswer}
+					disabled={showAnswer}
+					class:danger-btn={!showAnswer}
+					class="base-btn">Show answer</button
+				>
+			{/if}
+
+			{#if nextQuestion}
+				<button type="button" on:click={gotoNextQuestion} class="base-btn success-btn"
+					>Next Question</button
+				>
+			{/if}
+		</div>
 	</div>
-</div>
 {/if}
+
 <style>
 	.base-btn {
 		@apply transition-colors focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2;

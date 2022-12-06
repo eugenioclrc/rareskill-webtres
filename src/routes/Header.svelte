@@ -31,7 +31,7 @@
 <header class="">
 	<nav class="container mx-auto p-6 lg:flex lg:items-center lg:justify-between">
 		<div class="flex items-center justify-between">
-			<div>
+			<div class="text-center">
 				<a
 					class="text-2xl font-bold text-gray-800 hover:text-gray-700 dark:text-white dark:hover:text-gray-300 lg:text-3xl"
 					href="/"

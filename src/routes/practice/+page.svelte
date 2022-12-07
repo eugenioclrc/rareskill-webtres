@@ -26,6 +26,7 @@
 
 	let shuffleQuestions = [...questions];
 
+	let mounted = false;
 	onMount(() => {
 		let seed = getWithExpiry('seed');
 		if (!seed) {
@@ -33,11 +34,12 @@
 			setWithExpiry('seed', seed, 1000 * 60 * 60 * 24);
 		}
 		myrng = seedrandom(seed);
-		shuffleQuestions = shuffle(questions);
+		shuffleQuestions = [...shuffle(questions)];
 		shuffleQuestions.forEach((e) => {
 			e.options = [...shuffle(e.options)];
 		});
 		shuffleQuestions = [...shuffleQuestions];
+		mounted = true;
 	});
 
 	$: q0 = shuffleQuestions[nQuestion];
@@ -49,8 +51,10 @@
 			<h1 class="text-3xl font-bold text-blue-600 tracking-wider">Practice Mode</h1>
 		</div>
 		<div class="bg-white container max-w-4xl mt-8 mx-auto px-16 py-8 rounded-lg shadow-2xl">
-			<small>Question {nQuestion + 1} of {shuffleQuestions.length}</small>
-			<Question {q0} bind:nQuestion />
+			{#if mounted}
+				<small>Question {nQuestion + 1} of {shuffleQuestions.length}</small>
+				<Question {q0} bind:nQuestion />
+			{/if}
 		</div>
 	</div>
 {/if}

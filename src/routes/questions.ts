@@ -424,5 +424,206 @@ La unica diferencia entre _mint() y _safeMint() es que _safeMint() valida que el
 - [https://eips.ethereum.org/EIPS/eip-721](https://eips.ethereum.org/EIPS/eip-721)
 `,
 		by: 'juancito'
+	},
+	{
+		question: 'What is true about payable and non-payable functions?',
+		options: [
+			{ text: 'Payable functions are more gas efficient than non-payable ones', check: true },
+			{ text: 'Non-payable functions are more gas efficient than payable ones' },
+			{ text: 'Only payable functions can have self destruct functionality' },
+			{ text: 'Both payable and non-payable functions can be view functions' }
+		],
+		type: 'radio',
+		answer: `
+![19.JPG](/19.jpg)
+
+************************************************Como podemos observar en la imagen, existe una pequeña diferencia (a favor) en el uso de gas por parte de una función payable. Esto se debe a que en las funciones non-payable, existe un chequeo mediante OPCODES para asegurar que la cantidad de ETH enviada sea nula. Puntualmente este chequeo se hace mediante 3 OPCODES:***
+
+- **CALLVALUE**: Para conocer la cantidad de ETH que se envió (toma el msg.value).
+- **DUP1**: Duplica el primer valor en el stack.
+- **ISZERO**: Se fija que el valor obtenido en CALLVALUE sea igual a cero.
+
+************************Además, las funciones payable no pueden ser declaradas como view.***
+
+![Remix: “pruebita” intenta ser payable y view a la vez pero falla miserablemente.](/Untitled.png)
+
+Remix: “pruebita” intenta ser payable y view a la vez pero falla miserablemente.
+
+**Fuente**: [https://coinsbench.com/solidity-payable-vs-regular-functions-a-gas-usage-comparison-b4a387fe860d](https://coinsbench.com/solidity-payable-vs-regular-functions-a-gas-usage-comparison-b4a387fe860d)
+`,
+		by: 'bengalaQ'
+	},
+
+	{
+		question: 'What does selfdestruct do?',
+		options: [
+			{ text: 'sends all the ether to the address specified in the first argument', check: true },
+			{
+				text: 'will revert (not self destruct) if the recipient address does not exist or cannot receive ether'
+			},
+			{ text: 'sends all the ether in a contract to the address that initiated the self destruct' },
+			{ text: "removes a smart contract's bytecode and storage variables from the blockchain" },
+			{
+				text: 'after the transaction with selfdestruct completes, all function calls to the smart contract will revert'
+			}
+		],
+		type: 'radio',
+		answer: `
+  **Sources:**
+
+- [https://solidity-by-example.org/hacks/self-destruct/](https://solidity-by-example.org/hacks/self-destruct/?ref=hackernoon.com)
+- [https://ethereum.stackexchange.com/questions/10793/contracts-state-after-a-selfdestruct](https://ethereum.stackexchange.com/questions/10793/contracts-state-after-a-selfdestruct)
+- [https://docs.soliditylang.org/en/v0.8.17/introduction-to-smart-contracts.html#deactivate-and-self-destruct](https://docs.soliditylang.org/en/v0.8.17/introduction-to-smart-contracts.html#deactivate-and-self-destruct)
+
+Not sure about this one:
+
+> after the transaction with selfdestruct completes, all function calls to the smart contract will revert
+> `,
+		by: 'juancito'
+	},
+	{
+		question: 'What is true about private, internal, external, and public functions?',
+		options: [
+			{ text: 'Some of these are related to inheritance', check: true },
+			{ text: 'public functions can be called by other smart contracts', check: true },
+			{
+				text: 'All of these except external could be used to describe variables in addition to functions',
+				check: true
+			},
+			{
+				text: 'There is no such thing as an internal function, it should be called a protected function'
+			},
+			{ text: 'external functions can only be called by smart contracts' }
+		],
+		type: 'checkbox',
+		answer: `Source: [https://docs.soliditylang.org/en/latest/cheatsheet.html#function-visibility-specifiers](https://docs.soliditylang.org/en/latest/cheatsheet.html#function-visibility-specifiers)
+
+Why #1? Inheriting contracts can access Public and Internal functions but not External and Private.
+`,
+		by: 'tomasfrancisco'
+	},
+	{
+		question: 'What does delegatecall do?',
+		options: [
+			{
+				text: 'It executes a function that may be outside the smart contract, in the context of the current smart contract',
+				check: true
+			},
+			{ text: 'It allows smart contracts to set a privilege level for certain functions' },
+			{ text: 'It is used to defer execution for a later time' },
+			{ text: "It's how smart contracts listen for commands from other smart contracts" },
+			{ text: "It's how smart contracts forward calls to other contracts" }
+		],
+		type: 'radio',
+		answer: `![Untitled](/Untitled2.png)
+
+****************Fuente:**************** [https://www.evm.codes/#f4?fork=arrowGlacier](https://www.evm.codes/#f4?fork=arrowGlacier)
+`,
+		by: 'bengalaQ'
+	},
+
+	{
+		question: 'What is true about virtual functions?',
+		options: [
+			{ text: 'It allows the function to be modified by a child contract', check: true },
+			{ text: 'It is used only in abstract contracts' },
+			{ text: 'Virtual functions are less gas efficient than regular functions' },
+			{ text: 'Virtual functions must be overriden by a child contract' },
+			{ text: 'The virtual keyword has no effect after solidity 0.7.0' }
+		],
+		type: 'radio',
+		answer: `
+  - [x]  It allows the function to be modified by a child contract
+    
+    **TRUE, a child contract can override a function if the parent function is declared as virutal**
+    
+- [ ]  It is used only in abstract contracts
+    
+    **FALSE, it can be used on non-abstract contract**
+    
+- [ ]  Virtual functions are less gas efficient than regular functions
+    
+    **FALSE, resolution happens at compilation time**
+    
+- [ ]  Virtual functions must be overriden by a child contract
+    
+    **FALSE, a child contract can override the function but it isn't required**
+    
+- [ ]  The virtual keyword has no effect after solidity 0.7.0
+    
+    **FALSE, ???**
+`,
+		by: 'adriro'
+	},
+	{
+		question: 'What is true about block.timestamp?',
+		options: [
+			{ text: 'The timestamp is determined by the miner or validator', check: true },
+			{ text: 'The number of milliseconds since 00:00:00 UTC 1 January 1970', check: true },
+			{ text: "The number of milliseconds since 1 January 1970 in the user's timezone" },
+			{ text: 'The number of seconds since 00:00:00 UTC 1 January 1970' },
+			{ text: "The number of seconds since 1 January 1970 in the user's timezone" }
+		],
+		type: 'checkbox',
+		answer: `
+- [x]  The timestamp is determined by the miner or validator
+    
+    Sí! Y pueden hacerse los pillos con un márgen de error (que antes era de 900 milisegundos, ahora no lo sé).
+    
+- [ ]  The number of milliseconds since 1 January 1970 in the user's timezone
+    
+    **Nope. UTC1.**
+    
+- [ ]  The number of seconds since 00:00:00 UTC 1 January 1970
+    
+    ***Nope. It’s milliseconds.***
+    
+- [x]  The number of milliseconds since 00:00:00 UTC 1 January 1970
+    
+    **Yes. [Wikipedia.](https://en.wikipedia.org/wiki/Unix_time)**
+    
+- [ ]  The number of seconds since 1 January 1970 in the user's timezone
+    
+    ***Nope. It’s milliseconds.***
+    
+`,
+		by: 'matta'
+	},
+
+	{
+		question: 'What is true about payable and non-payable functions?',
+		options: [
+			{ text: 'It makes a function call and reverts if a state change occurs', check: true },
+			{ text: 'It is used for functions that have a fixed gas cost' },
+			{ text: 'It returns constant variables' },
+			{ text: 'It is only used for calls within a smart contract' },
+			{ text: 'It is deprecated an not recommended for use, it is an older version of call' }
+		],
+		type: 'radio',
+		answer: `**Sources:**
+
+- [https://eips.ethereum.org/EIPS/eip-214#specification](https://eips.ethereum.org/EIPS/eip-214#specification)
+- [https://kushgoyal.com/ethereum-solidity-how-use-call-delegatecall/](https://kushgoyal.com/ethereum-solidity-how-use-call-delegatecall/)
+`,
+		by: 'juancito'
+	},
+
+	{
+		question: 'As of 2022, what is the maximum smart contract size?',
+		options: [
+			{ text: '24 kb', check: true },
+			{ text: 'Smart contracts do not have a size limit' },
+			{ text: '20 kb' },
+			{ text: '32 kb' },
+			{
+				text: 'Smart contracts do not have a size limit, but they become prohibitively expensive to deploy as they get large'
+			},
+			{ text: 'The maximum size of a smart contract is determined by the gas block limit' },
+			{ text: '12 kb' }
+		],
+		type: 'radio',
+		answer:
+			'Source: [https://ethereum.org/en/developers/docs/smart-contracts/#limitations](https://ethereum.org/en/developers/docs/smart-contracts/#limitations)',
+		by: 'Chiin'
 	}
 ];

@@ -375,14 +375,16 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 		question: 'What is true about ERC721?',
 		type: 'radio',
 		options: [
-			{ text: 'neither _mint() or _safeMint are potentially re-entrant', check: true },
-			{ text: '_safeMint() is potentially re-entrant but _mint() is not' },
+			{ text: 'neither _mint() or _safeMint are potentially re-entrant' },
+			{ text: '_safeMint() is potentially re-entrant but _mint() is not', check: true },
 			{ text: '_mint() is potentially re-entrant but _safeMint() is not' },
 			{ text: 'both _mint() and _safeMint() are potentially re-entrant' }
 		],
 		answer: `
-La unica diferencia entre _mint() y _safeMint() es que _safeMint() valida que el receiver (si es un contrato) tenga implementado el metodo onERC721Received() por lo que esta preparado para recibir nfts y estos no quedaran trabados en el contrato.`,
-		by: 'nicobevi'
+		\`_safeMint(address to, uint256 tokenId, bytes data)\`Safely mints tokenId and transfers it to to. If to refers to a smart contract, it must implement IERC721Receiver.onERC721Received, **which is called upon a safe transfer. <- REENTRANCY ISSUE**
+		\`_mint(address to, uint256 tokenId) internal\`: Mints tokenId and transfers it to to.
+		`,
+		by: 'nicobevi - 0x4non'
 	},
 
 	{
@@ -560,9 +562,9 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 		question: 'What is true about block.timestamp?',
 		options: [
 			{ text: 'The timestamp is determined by the miner or validator', check: true },
-			{ text: 'The number of milliseconds since 00:00:00 UTC 1 January 1970', check: true },
+			{ text: 'The number of milliseconds since 00:00:00 UTC 1 January 1970' },
 			{ text: "The number of milliseconds since 1 January 1970 in the user's timezone" },
-			{ text: 'The number of seconds since 00:00:00 UTC 1 January 1970' },
+			{ text: 'The number of seconds since 00:00:00 UTC 1 January 1970', check: true },
 			{ text: "The number of seconds since 1 January 1970 in the user's timezone" }
 		],
 		type: 'checkbox',
@@ -575,20 +577,20 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
     
     **Nope. UTC1.**
     
-- [ ]  The number of seconds since 00:00:00 UTC 1 January 1970
+- [x]  The number of seconds since 00:00:00 UTC 1 January 1970
     
-    ***Nope. It’s milliseconds.***
+    ***Yes. [https://docs.soliditylang.org/en/latest/units-and-global-variables.html#block-and-transaction-properties](https://docs.soliditylang.org/en/latest/units-and-global-variables.html#block-and-transaction-properties) ***
     
-- [x]  The number of milliseconds since 00:00:00 UTC 1 January 1970
+- [ ]  The number of milliseconds since 00:00:00 UTC 1 January 1970
     
-    **Yes. [Wikipedia.](https://en.wikipedia.org/wiki/Unix_time)**
+    **No**
     
 - [ ]  The number of seconds since 1 January 1970 in the user's timezone
     
-    ***Nope. It’s milliseconds.***
+    ***No, its in UTC.***
     
 `,
-		by: 'matta'
+		by: 'matta - adriro'
 	},
 
 	{

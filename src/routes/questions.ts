@@ -310,11 +310,11 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 			{ text: 'Reading storage variables', check: true }
 		],
 		answer: `
-  - [ ]  Reading msg.sender **// caller 2 gas**
-  - [ ]  Reading immutable variables **// se agregan como constantes en el código, asumo que existirá alguna subrutina que hace un push del valor en el stack**
-  - [ ]  Reading calldata **// calldataload 3 gas, calldatasize 2 gas, calldatacopy 3 gas**
-  - [ ]  Reading variables in memory **// mload 3 gas**
-  - [x]  Reading storage variables **// sload 100 gas**
+  - [ ]  Reading msg.sender ** // caller 2 gas**
+  - [ ]  Reading immutable variables ** // se agregan como constantes en el código, asumo que existirá alguna subrutina que hace un push del valor en el stack**
+  - [ ]  Reading calldata ** // calldataload 3 gas, calldatasize 2 gas, calldatacopy 3 gas**
+  - [ ]  Reading variables in memory ** // mload 3 gas**
+  - [x]  Reading storage variables ** // sload 100 gas**
 
   **Source**: [https://www.evm.codes/](https://www.evm.codes/)`,
 		by: 'matta'
@@ -754,7 +754,4 @@ function vote(uint256 choice) external payable {
 El compilador ordena las funciones en el bytecode por el valor hexadecimal de su selector. Por lo tanto los selectores con un valor hexa menor se verifican antes y consumen menos gas.`,
 		by: 'Magnetto'
 	},
-
-
-
 ];

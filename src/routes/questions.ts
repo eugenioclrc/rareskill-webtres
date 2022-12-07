@@ -1,3 +1,4 @@
+
 export default [
 	{
 		question: 'How can a smallest unit of ether called?',
@@ -406,7 +407,7 @@ La unica diferencia entre _mint() y _safeMint() es que _safeMint() valida que el
 	{
 		question: 'What is true about transferFrom and safeTransferFrom in ERC721?',
 		type: 'radio',
-		questions: [
+		options: [
 			{ text: 'safeTransferFrom checks if the recipient is a smart contract', check: true },
 			{ text: 'transferFrom may be re-entrant, but safeTransferFrom is not re-entrant' },
 			{ text: 'transferFrom checks if the recipient is a smart contract' },

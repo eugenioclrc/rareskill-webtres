@@ -1,5 +1,6 @@
 
 export default [
+	// 1
 	{
 		question: 'How can a smallest unit of ether called?',
 		options: [
@@ -13,6 +14,7 @@ export default [
 		answer: 'Source: https://docs.soliditylang.org/en/v0.8.16/units-and-global-variables.html',
 		by: 'tomasfrancisco'
 	},
+	// 2
 	{
 		question: 'Contract C is deployed. When boom() is called. Which of the following is true.',
 		code: `pragma solidity 0.8.15;
@@ -49,7 +51,7 @@ Teniendo en cuenta que el enunciado solo menciona el deploy del contrato C, y se
     `,
 		by: 'bengalaQ'
 	},
-
+	// 3
 	{
 		question: "How can a smart contract change it's bytecode?",
 		options: [
@@ -92,6 +94,7 @@ Teniendo en cuenta que el enunciado solo menciona el deploy del contrato C, y se
 `,
 		by: 'adriro'
 	},
+	// 4
 	{
 		question: 'Which of the following variable types can be stored in memory?',
 		options: [
@@ -113,6 +116,7 @@ Note that other variable types, such as uint, address, and the output of a hash,
 `,
 		by: 'https://chat.openai.com/'
 	},
+	// 5
 	{
 		question: "What is Ethereum's primary hash function?",
 		type: 'radio',
@@ -126,6 +130,7 @@ Note that other variable types, such as uint, address, and the output of a hash,
 		answer: `[https://www.oreilly.com/library/view/mastering-ethereum/9781491971932/ch04.html#:~:text=Ethereum's Cryptographic Hash Function%3A Keccak,Institute of Science and Technology](https://www.oreilly.com/library/view/mastering-ethereum/9781491971932/ch04.html#:~:text=Ethereum's%20Cryptographic%20Hash%20Function%3A%20Keccak,Institute%20of%20Science%20and%20Technology).`,
 		by: 'nicobevi'
 	},
+	// 6
 	{
 		question: "What is Ethereum's primary hash function?",
 		type: 'radio',
@@ -139,7 +144,7 @@ Note that other variable types, such as uint, address, and the output of a hash,
 		answer: `[https://www.oreilly.com/library/view/mastering-ethereum/9781491971932/ch04.html#:~:text=Ethereum's Cryptographic Hash Function%3A Keccak,Institute of Science and Technology](https://www.oreilly.com/library/view/mastering-ethereum/9781491971932/ch04.html#:~:text=Ethereum's%20Cryptographic%20Hash%20Function%3A%20Keccak,Institute%20of%20Science%20and%20Technology).`,
 		by: 'nicobevi'
 	},
-
+	// 7
 	{
 		question: 'What is the difference between these two functions?',
 		code: `
@@ -179,6 +184,7 @@ contract Difference {
 **La funcion a gasta potencialmente menos gas que la b por que el require corta antes con la evaluacion de la transaccion** ??`,
 		by: '0x4non'
 	},
+	// 8
 	{
 		question: 'See the smart contract below. What is the storage slot of y?',
 		code: `
@@ -204,6 +210,7 @@ Ethereum smart contract storage is a mapping uint256 to uint256. In this case th
 `,
 		by: 'ivaniuss'
 	},
+	// 9
 	{
 		question: 'When a smart contract is verified on etherscan, which of the following is true?',
 		type: 'radio',
@@ -222,6 +229,7 @@ Ethereum smart contract storage is a mapping uint256 to uint256. In this case th
 `,
 		by: 'tomasfrancisco'
 	},
+	// 10
 	{
 		question:
 			'The DAO hack in 2016, that resulted in the split of Ethereum Classic, was hacked with what kind of exploit?',
@@ -238,6 +246,7 @@ Ethereum smart contract storage is a mapping uint256 to uint256. In this case th
   `,
 		by: 'ivaniuss'
 	},
+	// 11
 	{
 		question: 'EIP 1967 Proxy Storage Slots specifies which storage slots?',
 		type: 'checkbox',
@@ -253,7 +262,7 @@ Source: [https://eips.ethereum.org/EIPS/eip-1967](https://eips.ethereum.org/EIPS
 `,
 		by: 'Magnetto'
 	},
-
+	// 12
 	{
 		question: 'What is the difference between transfer and transferFrom in ERC20?',
 		type: 'checkbox',
@@ -273,7 +282,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 `,
 		by: 'nicobevi'
 	},
-
+	// 13
 	{
 		question: 'Which of the following are valid uint sizes?',
 		type: 'checkbox',
@@ -289,6 +298,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 `,
 		by: 'Magnetto'
 	},
+	// 14
 	{
 		question: 'Which of the following is most costly in terms of gas?',
 		type: 'radio',
@@ -309,6 +319,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
   **Source**: [https://www.evm.codes/](https://www.evm.codes/)`,
 		by: 'matta'
 	},
+	// 15
 	{
 		question:
 			'You have only one ether (plus a little to pay for gas). Can you win this game and get two ether?',
@@ -353,7 +364,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 `,
 		by: 'matta'
 	},
-
+	// 16
 	{
 		question: 'What does require(msg.sender == tx.origin) do?',
 		type: 'radio',
@@ -370,7 +381,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 			'tx.origin is the address that initialized the transaction, which has to be an EOA. Checking that tx.origin == msg.sender will give us the security that msg.sender == EOA',
 		by: 'Chiin'
 	},
-
+	// 17
 	{
 		question: 'What is true about ERC721?',
 		type: 'radio',
@@ -386,7 +397,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 		`,
 		by: 'nicobevi - 0x4non'
 	},
-
+	// 18
 	{
 		question: 'What is the difference between a view and pure function in Solidity?',
 		type: 'checkbox',
@@ -405,7 +416,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 `,
 		by: 'Magnetto'
 	},
-
+	// 19
 	{
 		question: 'What is true about transferFrom and safeTransferFrom in ERC721?',
 		type: 'radio',
@@ -428,6 +439,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 `,
 		by: 'juancito'
 	},
+	// 20
 	{
 		question: 'What is true about payable and non-payable functions?',
 		options: [
@@ -456,7 +468,7 @@ Remix: “pruebita” intenta ser payable y view a la vez pero falla miserableme
 `,
 		by: 'bengalaQ'
 	},
-
+	// 21
 	{
 		question: 'What does selfdestruct do?',
 		options: [
@@ -484,6 +496,7 @@ Not sure about this one:
 > `,
 		by: 'juancito'
 	},
+	// 21
 	{
 		question: 'What is true about private, internal, external, and public functions?',
 		options: [
@@ -505,6 +518,7 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'tomasfrancisco'
 	},
+	// 22
 	{
 		question: 'What does delegatecall do?',
 		options: [
@@ -524,7 +538,7 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'bengalaQ'
 	},
-
+	// 23
 	{
 		question: 'What is true about virtual functions?',
 		options: [
@@ -558,6 +572,7 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'adriro'
 	},
+	// 24
 	{
 		question: 'What is true about block.timestamp?',
 		options: [
@@ -592,7 +607,7 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'matta - adriro'
 	},
-
+	// 25
 	{
 		question: 'What is true about payable and non-payable functions?',
 		options: [
@@ -610,7 +625,7 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'juancito'
 	},
-
+	// 26
 	{
 		question: 'As of 2022, what is the maximum smart contract size?',
 		options: [
@@ -628,5 +643,118 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 		answer:
 			'Source: [https://ethereum.org/en/developers/docs/smart-contracts/#limitations](https://ethereum.org/en/developers/docs/smart-contracts/#limitations)',
 		by: 'Chiin'
-	}
+	},
+  // 27
+	{
+		question: 'What is wrong with this code and/or what could be improved?',
+    code: `
+  mapping (address => uint256) balance;
+
+  function withdraw() external {
+    (bool success, ) = tx.origin.call{value: balance[tx.origin]}("");
+    require(success, "transfer failed");
+    balance[tx.origin] = 0;
+  }
+`,
+		options: [
+			{ text: 'withdraw should be payable' },
+			{ text: 'tx.origin can be a security vulnerability', check: true },
+			{ text: 'withdraw will fail unless the code is changed to payable(tx.origin)' },
+			{ text: 'the variable balance should have visibility set explicitly' },
+			{ text: 'the code is re-entrant' }
+		],
+		type: 'checkbox',
+		answer: `
+- [ ]  withdraw should be payable
+    
+    **No. Payable en una función sólo se usa cuando se espera que esa función sea payable.**
+    
+- [x]  tx.origin can be a security vulnerability
+    
+    **Sí, si no se usa con cuidado sí… tx.origin es siempre una EOA, y msg.sender es el último caller que llamó.**
+    
+- [ ]  withdraw will fail unless the code is changed to payable(tx.origin)
+    
+    **No. El codigo no falla como esta ahora.**
+    
+- [ ]  the variable balance should have visibility set explicitly
+    
+    **No. No es relevante la visibilidad de balance.**
+    
+- [ ]  the code is re-entrant
+    
+    **No. Porque para que pueda ser re-entrant, deberías lograr que el call sea hacia un contrato y pueda volver a ingresar, pero como tx.origin es siempre una EOA, no posee código, por ende, imposible.**
+
+`,
+		by: 'matta'
+	},
+  // 28
+	{
+		question: 'What limits the block size in Ethereum as of 2022?',
+		options: [
+			{ text: "15 million gas" },
+      { text: "2 megabyte data size" },
+      { text: "There cannot be more than 400 transactions per block" },
+      { text: "There cannot be more than 300 transactions per block" },
+      { text: "4 megabyte size" },
+      { text: "30 million gas", check: true },
+      { text: "12.5 million gas" },
+      { text: "1 megabyte data size" },
+      { text: "There cannot be more than 150 transactions per block" },
+		],
+		type: 'radio',
+		answer: `**Source:** [https://ethereum.org/en/developers/docs/blocks/](https://ethereum.org/en/developers/docs/blocks/)`,
+		by: 'ivaniuss'
+	},
+
+  // 29
+	{
+		question: 'What is the highest value the free memory pointer can achieve in this function?',
+    code: `
+function vote(uint256 choice) external payable {
+  require(!close);
+  require(msg.value == 1 ether);
+  require(choice < HIGHEST_VOTE_INDEX);
+
+  votes[choice] += 1;
+
+  if (votes[choice] > THRESHOLD) {
+    closed = true;
+  }
+}
+`,
+		options: [
+			{ text: "0x100" },
+      { text: "There is no limit" },
+      { text: "0x140" },
+      { text: "0x180" },
+      { text: "0x200" },
+      { text: "0x120" },
+      { text: "0x40" },
+      { text: "0x160" },
+      { text: "0x60" },
+      { text: "0x80", check: true },
+		],
+		type: 'radio',
+		answer: `yo me jugaría por 0x80. El free pointer empieza en 0x80 (el valor mas bajo) y la función no parece necesitar memoria con lo cual no debería incrementar este puntero. Podría chequearse con un debugger?`,
+		by: 'adriro'
+	},
+  // 30
+	{
+		question: 'Why does the gas cost of a public or external variable change when the name of the function changes?',
+		options: [
+			{ text: 'The longer the function name, the more space that is required to store it after compilation' },
+			{ text: 'Its position in the bytecode changes relative to other functions', check: true },
+			{ text: "The name of the function doesn't affect the gas cost, but if the arguments to the function change, the gas cost may change" },
+			{ text: 'The function selector may have more leading zeros', check: true },
+		],
+		type: 'radio',
+		answer: `Source: [https://github.com/jeffreyscholz/solidity-zero-finder-rust](https://github.com/jeffreyscholz/solidity-zero-finder-rust)
+
+El compilador ordena las funciones en el bytecode por el valor hexadecimal de su selector. Por lo tanto los selectores con un valor hexa menor se verifican antes y consumen menos gas.`,
+		by: 'Magnetto'
+	},
+
+
+
 ];

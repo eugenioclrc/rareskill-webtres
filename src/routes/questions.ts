@@ -391,7 +391,7 @@ Esto depende de si el token owner se refiere al dueño del balance y no al owner
 			{ text: 'both _mint() and _safeMint() are potentially re-entrant' }
 		],
 		answer: `
-		\`_safeMint(address to, uint256 tokenId, bytes data)\`Safely mints tokenId and transfers it to to. If to refers to a smart contract, it must implement IERC721Receiver.onERC721Received, **which is called upon a safe transfer. <- REENTRANCY ISSUE**
+		\`_safeMint(address to, uint256 tokenId, bytes data)\` Safely mints tokenId and transfers it to to. If to refers to a smart contract, it must implement IERC721Receiver.onERC721Received, **which is called upon a safe transfer. <- REENTRANCY ISSUE**
 		\`_mint(address to, uint256 tokenId) internal\`: Mints tokenId and transfers it to to.
 		`,
 		by: 'nicobevi - 0x4non'

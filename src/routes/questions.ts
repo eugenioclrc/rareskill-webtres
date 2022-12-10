@@ -752,7 +752,7 @@ function vote(uint256 choice) external payable {
 			},
 			{ text: 'The function selector may have more leading zeros', check: true }
 		],
-		type: 'radio',
+		type: 'checkbox',
 		answer: `Source: [https://github.com/jeffreyscholz/solidity-zero-finder-rust](https://github.com/jeffreyscholz/solidity-zero-finder-rust)
 
 El compilador ordena las funciones en el bytecode por el valor hexadecimal de su selector. Por lo tanto los selectores con un valor hexa menor se verifican antes y consumen menos gas.`,

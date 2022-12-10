@@ -936,7 +936,7 @@ An ethereum address is the last 20 bytes of the hash of the public key. An ether
 				check: true
 			}
 		],
-		type: 'radio',
+		type: 'checkbox',
 		answer: `
 The blockchain is deterministic, which makes it very difficult to generate a random value and even so, if the value is something we don't want, we can simply reverse the transaction.
 

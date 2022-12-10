@@ -28,9 +28,17 @@
 	let wrongAnswer: number[] = [];
 	let correctAnswer: number[] = [];
 
+	let questionType = q0.type;
+
+	$: if (q0.type == 'radio' && q0.options.filter((e) => e.check).length > 1 ) {
+		questionType = 'checkbox';
+	} else {
+		questionType = q0.type
+	}
+
 	function solve() {
 		let answerOk = false;
-		if (q0.type == 'radio') {
+		if (questionType == 'radio') {
 			answerOk = !!q0.options[answerRadio].check;
 		} else {
 			const expected = q0.options.map((e, i) => (e.check ? i : -1)).filter((e) => e > -1);
@@ -100,7 +108,7 @@
 		{#each q0.options as o, i}
 			<div class="border-t border-gray-200">
 				<label class="inline-flex items-center">
-					{#if q0.type == 'checkbox'}
+					{#if questionType == 'checkbox'}
 						<input
 							class="form-checkbox"
 							type="checkbox"

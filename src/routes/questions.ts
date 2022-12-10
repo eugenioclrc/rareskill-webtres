@@ -1,4 +1,3 @@
-
 export default [
 	// 1
 	{
@@ -644,10 +643,10 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 			'Source: [https://ethereum.org/en/developers/docs/smart-contracts/#limitations](https://ethereum.org/en/developers/docs/smart-contracts/#limitations)',
 		by: 'Chiin'
 	},
-  // 27
+	// 27
 	{
 		question: 'What is wrong with this code and/or what could be improved?',
-    code: `
+		code: `
   mapping (address => uint256) balance;
 
   function withdraw() external {
@@ -688,29 +687,29 @@ Why #1? Inheriting contracts can access Public and Internal functions but not Ex
 `,
 		by: 'matta'
 	},
-  // 28
+	// 28
 	{
 		question: 'What limits the block size in Ethereum as of 2022?',
 		options: [
-			{ text: "15 million gas" },
-      { text: "2 megabyte data size" },
-      { text: "There cannot be more than 400 transactions per block" },
-      { text: "There cannot be more than 300 transactions per block" },
-      { text: "4 megabyte size" },
-      { text: "30 million gas", check: true },
-      { text: "12.5 million gas" },
-      { text: "1 megabyte data size" },
-      { text: "There cannot be more than 150 transactions per block" },
+			{ text: '15 million gas' },
+			{ text: '2 megabyte data size' },
+			{ text: 'There cannot be more than 400 transactions per block' },
+			{ text: 'There cannot be more than 300 transactions per block' },
+			{ text: '4 megabyte size' },
+			{ text: '30 million gas', check: true },
+			{ text: '12.5 million gas' },
+			{ text: '1 megabyte data size' },
+			{ text: 'There cannot be more than 150 transactions per block' }
 		],
 		type: 'radio',
 		answer: `**Source:** [https://ethereum.org/en/developers/docs/blocks/](https://ethereum.org/en/developers/docs/blocks/)`,
 		by: 'ivaniuss'
 	},
 
-  // 29
+	// 29
 	{
 		question: 'What is the highest value the free memory pointer can achieve in this function?',
-    code: `
+		code: `
 function vote(uint256 choice) external payable {
   require(!close);
   require(msg.value == 1 ether);
@@ -724,29 +723,34 @@ function vote(uint256 choice) external payable {
 }
 `,
 		options: [
-			{ text: "0x100" },
-      { text: "There is no limit" },
-      { text: "0x140" },
-      { text: "0x180" },
-      { text: "0x200" },
-      { text: "0x120" },
-      { text: "0x40" },
-      { text: "0x160" },
-      { text: "0x60" },
-      { text: "0x80", check: true },
+			{ text: '0x100' },
+			{ text: 'There is no limit' },
+			{ text: '0x140' },
+			{ text: '0x180' },
+			{ text: '0x200' },
+			{ text: '0x120' },
+			{ text: '0x40' },
+			{ text: '0x160' },
+			{ text: '0x60' },
+			{ text: '0x80', check: true }
 		],
 		type: 'radio',
 		answer: `yo me jugaría por 0x80. El free pointer empieza en 0x80 (el valor mas bajo) y la función no parece necesitar memoria con lo cual no debería incrementar este puntero. Podría chequearse con un debugger?`,
 		by: 'adriro'
 	},
-  // 30
+	// 30
 	{
-		question: 'Why does the gas cost of a public or external variable change when the name of the function changes?',
+		question:
+			'Why does the gas cost of a public or external variable change when the name of the function changes?',
 		options: [
-			{ text: 'The longer the function name, the more space that is required to store it after compilation' },
+			{
+				text: 'The longer the function name, the more space that is required to store it after compilation'
+			},
 			{ text: 'Its position in the bytecode changes relative to other functions', check: true },
-			{ text: "The name of the function doesn't affect the gas cost, but if the arguments to the function change, the gas cost may change" },
-			{ text: 'The function selector may have more leading zeros', check: true },
+			{
+				text: "The name of the function doesn't affect the gas cost, but if the arguments to the function change, the gas cost may change"
+			},
+			{ text: 'The function selector may have more leading zeros', check: true }
 		],
 		type: 'radio',
 		answer: `Source: [https://github.com/jeffreyscholz/solidity-zero-finder-rust](https://github.com/jeffreyscholz/solidity-zero-finder-rust)
@@ -754,4 +758,261 @@ function vote(uint256 choice) external payable {
 El compilador ordena las funciones en el bytecode por el valor hexadecimal de su selector. Por lo tanto los selectores con un valor hexa menor se verifican antes y consumen menos gas.`,
 		by: 'Magnetto'
 	},
+	// 31
+	{
+		question: 'What happens if a program enters an infinite loop in Ethereum?',
+		options: [
+			{ text: 'The transaction will revert', check: true },
+			{
+				text: 'The ethereum client will warn the user and not allow them to initiate the transaction.',
+				check: true
+			},
+			{ text: 'The compiler does not allow you to create programs with infinite loops' },
+			{
+				text: "The validator will reject the transaction after seeing it hasn't terminated past a certain time"
+			},
+			{
+				text: 'The transaction will update the state of the blockchain until it runs out of gas. It will preserve any changes before the gas ran out.'
+			}
+		],
+		type: 'checkbox',
+		answer: `- [x]  The transaction will revert
+    
+**TRUE, the transaction will run until it reaches its gas limit, and eventually revert.**
+    
+- [x]  The ethereum client will warn the user and not allow them to initiate the transaction.
+    
+**This may be true, clients simulate transactions and may alert the user.**
+    
+- [ ]  The compiler does not allow you to create programs with infinite loops
+    
+**FALSE, undecidable problem**
+    
+- [ ]  The validator will reject the transaction after seeing it hasn't terminated past a certain time
+    
+**FALSE, its bounded by gas not time**
+    
+- [ ]  The transaction will update the state of the blockchain until it runs out of gas. It will preserve any changes before the gas ran out.
+    
+**FALSE, reverted transactions don't persist state**
+`,
+		by: 'adriro'
+	},
+	// 32
+	{
+		question: 'What is wrong with this code?',
+		code: `valueToSend = totalValue / contributors.length * 1 ether`,
+		options: [
+			{ text: 'the valueToSend might be zero, even if totalValue is not', check: true },
+			{ text: 'arithmetic underflow' },
+			{ text: 'arithmetic overflow' },
+			{ text: 'nothing is wrong with the code' },
+			{ text: 'totalValue might not be divisible by contributors.length' }
+		],
+		type: 'radio',
+		answer: `
+\`\`\`solidity
+totalValue = 10;
+contributors = [1, 2, ..., 100];
+valueToSend = totalValue / contributors.length * 1 ether;
+console.log(valueToSend); // Logs 0
+\`\`\`
+`,
+		by: 'Chiin'
+	},
+	// 33
+	{
+		question: 'What is the minimum valid calldatasize for this function?',
+		code: `
+function foo(uint256[] memory x, uint256[] memory y) external view returns(uint256) {
+	// code
+}`,
+		options: [
+			{ text: '132', check: true },
+			{ text: '256' },
+			{ text: '260' },
+			{ text: '68' },
+			{ text: '64' },
+			{ text: '128' },
+			{ text: '224' }
+		],
+		type: 'radio',
+		answer: `ABI encoded dynamic arrays have:
+
+1. offset to data
+2. length of the array
+3. ABI encoded data for each element
+
+The minimum valid calldata should correspond to both empty arrays, that will have both offsets and both lengths. 32 * 4 = 128 bytes. We need to account also for the function selector which is 4 bytes.
+
+The answer is 132 bytes.
+`,
+		by: 'adriro'
+	},
+	// 34
+	{
+		question: 'What solidity version introduced arithmetic underflow and overflow protection?',
+		options: [
+			{ text: '0.7.0' },
+			{ text: '0.7.6' },
+			{
+				text: 'None, you should always use SafeMath if you are worried about overflow and underflow'
+			},
+			{ text: '0.8.0', check: true },
+			{ text: '0.6.0' }
+		],
+		type: 'radio',
+		answer: `**Sources:**
+
+**Arithmetic operations revert on underflow and overflow. You can use \`unchecked { ... }\`
+to use the previous wrapping behaviour.**
+
+[https://docs.soliditylang.org/en/v0.8.16/080-breaking-changes.html](https://docs.soliditylang.org/en/v0.8.16/080-breaking-changes.html)`,
+		by: '0x4non'
+	},
+	// 35
+	{
+		question: 'How is an ethereum address created?',
+		options: [
+			{
+				text: 'An ethereum address is the last 20 bytes of the hash of the public key',
+				check: true
+			},
+			{ text: 'An ethereum address is the public key of an ECDSA signature scheme' },
+			{
+				text: "An ethereum address is a random string. It's relationship to the secret phrase is kept in the user account"
+			},
+			{ text: 'An ethereum address is the hash of the public key' },
+			{
+				text: 'An ethereum address is the hash of the block number the wallet was created on, and the public key'
+			}
+		],
+		type: 'radio',
+		answer: `**ChatGPT;**
+An ethereum address is the last 20 bytes of the hash of the public key. An ethereum address is created by taking the public key of an ECDSA (Elliptic Curve Digital Signature Algorithm) signature scheme and then applying the Keccak-256 hash function to it. The resulting hash is then truncated to the last 20 bytes to obtain the ethereum address. This process ensures that the ethereum address is unique and cannot be easily derived from the public key.
+`,
+		by: '0x4non'
+	},
+	// 36
+
+	{
+		question: 'Which of the following is true if 51% of the network is malicious?',
+		options: [
+			{
+				text: 'They can fork the protocol (but if and only if they maintain more than 51% control of the hash power or staked ether)',
+				check: true
+			},
+			{ text: 'The nodes can steal your ether', check: true },
+			{ text: 'They can conduct a denial of service', check: true },
+			{ text: 'The nodes can censor you', check: true }
+		],
+		type: 'checkbox',
+		answer: `
+- ******************Si tienen el 51% del control sobre el hash power o el staked ETH podrían introducir una blockchain alterna a la actual, validándola ya que generan el mayor consenso.******************
+- ************************************************Se podrían generar transacciones que alteren el balance de una cuenta, y validar las mismas ya que tienen el mayor consenso.************************************************
+- *********************************************************************************Todas las transacciones podrían ser rechazadas ya que se tiene el mayor consenso.*********************************************************************************
+- *********************************************************************************************************************************************************Similar a la justificación anterior. Todas las transacciones de una cuenta en particular podrían ser rechazadas, censurando a un usuario en concreto.*********************************************************************************************************************************************************
+
+****************Fuente (me gustó por el ejemplo de la película para entender descentralización):**************** [https://www.coindesk.com/learn/what-is-a-51-attack/](https://www.coindesk.com/learn/what-is-a-51-attack/)
+`,
+		by: 'bengalaQ'
+	},
+	// 37
+	{
+		question: 'Which of the following is true about generating random numbers on Ethereum?',
+		options: [
+			{
+				text: 'combining the blockhash with other random data like block.difficulty (pre merge), block.coinbase and msg.sender makes it safer'
+			},
+			{ text: 'as long as randomness relies on private variables, it is unpredictable' },
+			{ text: 'using block.timestamp is unreliable because the miner can manipulate it' },
+			{
+				text: 'a commit reveal scheme can produce safe randomness under certain assumptions',
+				check: true
+			},
+			{ text: 'using the blockhash is reliable' },
+			{
+				text: 'randomness is difficult to generate securely because the blockchain is deterministic',
+				check: true
+			}
+		],
+		type: 'radio',
+		answer: `
+The blockchain is deterministic, which makes it very difficult to generate a random value and even so, if the value is something we don't want, we can simply reverse the transaction.
+
+The commit reveal is a good approach.
+
+**Sources:**
+
+[https://github.com/kadenzipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/weak-sources-randomness.md](https://github.com/kadenzipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/weak-sources-randomness.md)
+`,
+		by: '0x4non'
+	},
+	// 38
+	{
+		question: 'What is the difference between create and create2?',
+		options: [
+			{ text: 'the user has more control over the address in create compared to create2' },
+			{
+				text: 'the user has more control over the address in create2 compared to create',
+				check: true
+			},
+			{ text: 'create2 takes a salt parameter', check: true },
+			{ text: 'the user can predict the address in create2 but not create' },
+			{ text: 'create is for creating one smart contract in a single transaction' },
+			{ text: 'create2 can create multiple smart contracts.' }
+		],
+		type: 'checkbox',
+		answer: `**Source:** 
+- [https://blog.openzeppelin.com/getting-the-most-out-of-create2/](https://blog.openzeppelin.com/getting-the-most-out-of-create2/)
+- [https://consensys.net/diligence/blog/2019/02/smart-contract-security-newsletter-16-create2-faq/#:~:text=The important difference is in,salt value%2C and the init_code](https://consensys.net/diligence/blog/2019/02/smart-contract-security-newsletter-16-create2-faq/#:~:text=The%20important%20difference%20is%20in,salt%20value%2C%20and%20the%20init_code%20) .
+
+`,
+		by: 'ivaniuss'
+	},
+	{
+		question:
+			'What is the difference in the calldata between function myFunction(uint64 x) and myFunction(uint256 x)?',
+		options: [
+			{ text: 'There is no difference', check: true },
+			{
+				text: 'it depends on which ethereum hardfork is being used, but as of 2022 the representation is the same'
+			},
+			{
+				text: 'it will depend on the number x holds, but myFunction(uint256 x) can create larger calldata'
+			},
+			{ text: 'the calldata for myFunction(uint64 x) will be smaller than myFunction(uint256 x)' },
+			{ text: 'it depends on which version of solidity is being used' }
+		],
+		type: 'radio',
+		answer: `I think there is no difference on the calldata, the function signature for both functions of course will be different, but the calldata is the same, and is represented in 32 bytes (uint256).
+`,
+		by: '0x4non'
+	},
+	{
+		question:
+			'What is the layout of y in memory right after loadY executes, `uint8[] memory y = x`?',
+		code: `
+uint8[] x = [1, 2, 3, 4];
+
+function loadY() extenal {
+	uint8[] memory y = x;
+}
+`,
+		options: [
+			{ text: '0x1234' },
+			{ text: '0x01020304' },
+			{ text: '0x0001000200030004' },
+			{
+				text: '0x0000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000000000000000000004',
+				check: true
+			}
+		],
+		type: 'radio',
+		answer: `**Sources:**
+
+- [https://docs.soliditylang.org/en/v0.8.15/internals/layout_in_memory.html](https://docs.soliditylang.org/en/v0.8.15/internals/layout_in_memory.html)
+`,
+		by: 'nicobevi'
+	}
 ];

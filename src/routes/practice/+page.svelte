@@ -34,7 +34,7 @@
 			setWithExpiry('seed', seed, 1000 * 60 * 60 * 24);
 		}
 		myrng = seedrandom(seed);
-		shuffleQuestions = [...shuffle(questions)];
+		shuffleQuestions = [...shuffle(shuffleQuestions)];
 		shuffleQuestions.forEach((e) => {
 			e.options = [...shuffle(e.options)];
 		});

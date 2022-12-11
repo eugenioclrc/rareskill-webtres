@@ -105,3 +105,4 @@
 		>
 	</div>
 </section>
+<a href="/practice/secureum/bootcamp-101/"> Demo, secureum 101 quiz</a>

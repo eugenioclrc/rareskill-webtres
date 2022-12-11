@@ -12,9 +12,9 @@
 			text: string;
 			check: boolean;
 		}[];
-		code: string;
+		code?: string;
 		answer: string;
-		by: string;
+		by?: string;
 	};
 
 	let won = false;
@@ -96,7 +96,7 @@
 	}
 </script>
 
-<h2 class="text-2xl font-bold tracking-wide text-gray-800">
+<h2 class="text-2xl font-bold tracking-wide text-gray-800 pt-2 pb-6">
 	{nQuestion + 1})
 	{q0.question}
 </h2>
@@ -143,7 +143,7 @@
 		<div class="w-full h-[1px] bg-gray-300" />
 	</div>
 
-	<div class="text-lg">
+	<div class="text-lg justification">
 		<SvelteMarkdown source={q0.answer} />
 		<small>Answered by {q0.by}</small>
 	</div>
@@ -220,4 +220,8 @@
 			transform: translate3d(4px, 0, 0);
 		}
 	}
+
+.justification :global(a) {
+	@apply text-blue-700 hover:text-blue-900 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-600;
+}
 </style>

@@ -97,23 +97,17 @@ Teniendo en cuenta que el enunciado solo menciona el deploy del contrato C, y se
 	{
 		question: 'Which of the following variable types can be stored in memory?',
 		options: [
-			{ text: 'uint' },
-			{ text: 'boolean' },
+			{ text: 'uint', check: true  },
+			{ text: 'boolean', check: true  },
 			{ text: 'struct', check: true },
 			{ text: 'array', check: true },
-			{ text: 'address' },
+			{ text: 'address', check: true  },
 			{ text: 'the output of a hash' }
 		],
 		type: 'checkbox',
-		answer: `
-In Solidity, the following variable types can be stored in memory:
-
-  - struct
-  - array
-  
-Note that other variable types, such as uint, address, and the output of a hash, are not valid for storage in memory. Instead, these types must be stored in storage.
+		answer: `Source: https://ethereum.stackexchange.com/questions/32082/are-local-variables-stored-in-memory-or-on-the-stack-in-solidity
 `,
-		by: 'https://chat.openai.com/'
+		by: 'infamousdegen'
 	},
 	// 5
 	{
@@ -765,7 +759,6 @@ El compilador ordena las funciones en el bytecode por el valor hexadecimal de su
 			{ text: 'The transaction will revert', check: true },
 			{
 				text: 'The ethereum client will warn the user and not allow them to initiate the transaction.',
-				check: true
 			},
 			{ text: 'The compiler does not allow you to create programs with infinite loops' },
 			{
@@ -780,9 +773,9 @@ El compilador ordena las funciones en el bytecode por el valor hexadecimal de su
     
 **TRUE, the transaction will run until it reaches its gas limit, and eventually revert.**
     
-- [x]  The ethereum client will warn the user and not allow them to initiate the transaction.
+- [ ]  The ethereum client will warn the user and not allow them to initiate the transaction.
     
-**This may be true, clients simulate transactions and may alert the user.**
+**This may be true, clients simulate transactions and may alert the user, but will allow initiate transaction**
     
 - [ ]  The compiler does not allow you to create programs with infinite loops
     
@@ -796,7 +789,7 @@ El compilador ordena las funciones en el bytecode por el valor hexadecimal de su
     
 **FALSE, reverted transactions don't persist state**
 `,
-		by: 'adriro'
+		by: 'adriro - reviewed by infamousdegen'
 	},
 	// 32
 	{

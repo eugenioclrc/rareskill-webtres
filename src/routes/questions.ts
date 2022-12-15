@@ -918,7 +918,8 @@ An ethereum address is the last 20 bytes of the hash of the public key. An ether
 				text: 'combining the blockhash with other random data like block.difficulty (pre merge), block.coinbase and msg.sender makes it safer'
 			},
 			{ text: 'as long as randomness relies on private variables, it is unpredictable' },
-			{ text: 'using block.timestamp is unreliable because the miner can manipulate it' },
+			{ text: 'using block.timestamp is unreliable because the miner can manipulate it',
+		check: true },
 			{
 				text: 'a commit reveal scheme can produce safe randomness under certain assumptions',
 				check: true
@@ -939,7 +940,7 @@ The commit reveal is a good approach.
 
 [https://github.com/kadenzipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/weak-sources-randomness.md](https://github.com/kadenzipfel/smart-contract-attack-vectors/blob/master/vulnerabilities/weak-sources-randomness.md)
 `,
-		by: '0x4non'
+		by: '0x4non - reviewed by AlanV'
 	},
 	// 38
 	{
